@@ -56,37 +56,3 @@ def change_proxy(enable):
         print("\n部分配置修改失败，请检查下面的当前状态。")
     show_status()
 
-
-def main():
-    if shutil.which("git") is None:
-        print("未找到 Git，请先安装 Git 并将其加入 PATH。")
-        return 1
-
-    print("Git 代理管理 · Clash Verge · 127.0.0.1:7897")
-    print("设置作用于当前用户的 Git 全局配置，开启时会覆盖原有代理值。")
-    print("不修改环境变量、仓库局部配置或针对特定 URL 的代理配置。")
-    show_status()
-
-    while True:
-        print("\n1. 开启代理\n2. 取消代理\n3. 查看状态\n0. 退出")
-        try:
-            choice = input("请选择 [0/1/2/3]：").strip()
-        except (EOFError, KeyboardInterrupt):
-            print("\n已退出。")
-            return 0
-
-        if choice == "0":
-            print("已退出。")
-            return 0
-        if choice == "1":
-            change_proxy(True)
-        elif choice == "2":
-            change_proxy(False)
-        elif choice == "3":
-            show_status()
-        else:
-            print("输入无效，请输入 0、1、2 或 3。")
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
